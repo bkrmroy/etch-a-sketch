@@ -1,0 +1,19 @@
+
+
+
+.container{
+    margin: auto;
+    width: fit-content;
+    border: solid;
+    border-color: grey;
+}
+h1{
+    color: rgb(124, 92, 182);
+    text-align: center;
+}
+.gridColumn{
+    border: solid 0.5px; 
+    border-color: black;
+    width: 32px;
+    height: 32px;
+}
