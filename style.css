@@ -14,6 +14,10 @@ h1{
 .gridColumn{
     border: solid 0.5px; 
     border-color: black;
-    width: 32px;
     height: 32px;
+    width: 32px;
+
+}
+.gridColumn:hover{
+    background-color: black;
 }
