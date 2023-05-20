@@ -1,30 +1,66 @@
 const container = document.querySelector(".container");
-console.log(container.clientWidth)
-
 
 function createGrid(rowNum, columnNum){
+    const cellWidth = (512/rowNum - 2)+ 'px';
+    const cellHeight = cellWidth;
+
     for (r = 0; r < rowNum; r++) {
+
         const row = document.createElement("div");
-        row.setAttribute("style","display : flex; flex-shrink: 0;");
 
         for(c = 0; c < columnNum; c++){
             const column = document.createElement("div");
-            row.appendChild(column).className = "gridColumn";
+            column.classList.add('cell');
+            row.appendChild(column);
+            column.setAttribute("style",`width: ${cellWidth}; height: ${cellHeight}`);
+ 
         }
-        container.appendChild(row).className = "gridRow";
+        
+        container.appendChild(row);
+    }
+
+}
+let rowNum =16;
+let columnNum = rowNum;
+createGrid(rowNum, columnNum);
+
+//draw when clicked on cell
+const cell = document.getElementsByClassName("cell");
+function draw(){
+    for(i=0; i < rowNum * columnNum; i++ ){
+        cell[i].addEventListener('mouseover', function(){
+            this.style.backgroundColor =  'black';
+        });
     }
 }
-createGrid(16, 16);
-
-const singleGrid = document.getElementsByClassName("gridColumn");
+draw();
 
 
-for(i=0; i < 256; i++ ){
+//reset grid or change grid size
+const reset = document.querySelector(".reset");
+reset.addEventListener('click',function(){
+    const x = parseInt(prompt("How many squares per side? (between 0 and 100)"));
+    console.log(x);
+    console.log(typeof(x));
+    rowNum = x ;
+    columnNum = rowNum;
+    if(x>0 && x<=100){
+        while (container.firstChild) {
+            container.removeChild(container.firstChild);
+          }
+        createGrid(rowNum, columnNum);
+        draw();
+    }
+})
 
-    singleGrid[i].addEventListener('mousedown', function(){
-        this.style.backgroundColor =  'black';
-    });
+
+//clear the cell colours
+const clear = document.querySelector(".clear");
+clear.addEventListener('click',function(){
+    for(i=0; i < rowNum*columnNum; i++ ){    
+        cell[i].style.backgroundColor =  'antiquewhite';
 }
+})
 
 
 
