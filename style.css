@@ -1,5 +1,6 @@
 body{
     background-color: antiquewhite;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .game{
     display: flex;
@@ -26,16 +27,20 @@ button{
     cursor: pointer;
 }
 button:hover {
+
+    background-color: #f78f5c; 
+    transform: scale(0.95);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     opacity: 0.8;
 }
 button:active {
      transform: translateY(1px);
 }
 .reset{
-    background-color: aqua;
+    
 }
 .clear{
-    background-color: rgb(189, 255, 233);
+    
 }
 
 
@@ -49,7 +54,7 @@ button:active {
     border-color: grey;
 }
 h1{
-    color: rgb(124, 92, 182);
+    color: black;
     text-align: center;
 }
 .cell{
