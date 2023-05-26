@@ -29,6 +29,7 @@ createGrid(rowNum, columnNum);
 const cell = document.getElementsByClassName("cell");
 const btnBlack = document.querySelector('.black');
 const btnRandomColor = document.querySelector('.random-color');
+const btnOpacity = document.querySelector(".opacity");
 
 function drawBlack(){
     for(i=0; i < rowNum * columnNum; i++ ){
@@ -55,28 +56,59 @@ function drawRandom(){
     }
     
 }
+function drawOpacity(){
+    for(i=0; i < rowNum * columnNum; i++ ){
+        let opacity = 200;
+        cell[i].addEventListener('mouseover', function(){
+            opacity -= 20; 
+            let col = `rgb(${opacity},${opacity},${opacity})`;
+            console.log(col);
+            this.style.backgroundColor =  col;
+        });
+    }
+    
+}
 
 btnBlack.addEventListener('click',function(){
     
     btnBlack.setAttribute('style','background-color: #f78f5c; transform: scale(0.95);box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);');
     btnRandomColor.setAttribute('style','');
-    btnBlack.classList.add('blackActive');
-    if(btnBlack.classList.contains('blackActive')){
+    btnOpacity.setAttribute('style','');
+
+    btnBlack.classList.add('active');
+    btnRandomColor.classList.remove('active');
+    btnOpacity.classList.remove('active');
+
+    if(btnBlack.classList.contains('active')){
         drawBlack();
     }
 })
 btnRandomColor.addEventListener('click',function(){
     btnRandomColor.setAttribute('style','background-color: #f78f5c; transform: scale(0.95);box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);');
     btnBlack.setAttribute('style','');
-    btnRandomColor.classList.add('randomActive');
-    if(btnRandomColor.classList.contains('randomActive')){
+    btnOpacity.setAttribute('style','');
+
+    btnRandomColor.classList.add('active');
+    btnOpacity.classList.remove('active');
+    btnBlack.classList.remove('active');
+
+    if(btnRandomColor.classList.contains('active')){
         drawRandom();
     }
 })
+btnOpacity.addEventListener('click',()=>{
+    btnBlack.setAttribute('style','');
+    btnRandomColor.setAttribute('style','');
+    btnOpacity.setAttribute('style','background-color: #f78f5c; transform: scale(0.95);box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);');
+    
+    btnOpacity.classList.add('active');
+    btnBlack.classList.remove('active');
+    btnRandomColor.classList.remove('active');
 
-
-
-
+    if(btnOpacity.classList.contains('active')){
+        drawOpacity();
+    }
+})
 
 //reset grid or change grid size
 const reset = document.querySelector(".reset");
